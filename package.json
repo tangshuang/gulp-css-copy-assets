@@ -1,0 +1,22 @@
+{
+    "name": "gulp-css-copy-assets",
+    "version": "0.0.1",
+    "description": "",
+    "main": "dist/gulp-css-copy-assets.js",
+    "scripts": {},
+    "keywords": [],
+    "author": "componer",
+    "dependencies": {
+        "gulp-bufferify": "^0.0.2",
+        "md5-file": "^3.1.1"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/componer/gulp-css-copy-assets.git"
+    },
+    "bugs": {
+        "url": "https://github.com/componer/gulp-css-copy-assets/issues"
+    },
+    "license": "ISC"
+}
