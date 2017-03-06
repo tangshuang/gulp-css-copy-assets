@@ -1,3 +1,5 @@
 node_modules/
 test/
+
+componer.config.js
 npm-debug.log

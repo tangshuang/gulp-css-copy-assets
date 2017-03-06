@@ -5,7 +5,7 @@ if(deps.length > 0) deps.forEach(dep => externals[dep] = dep)
 
 module.exports = {
 	name: 'gulp-css-copy-assets',
-	type: 'npm package',
+	type: 'npm',
 	build: [
 		{
 			from: 'src/gulp-css-copy-assets.js',

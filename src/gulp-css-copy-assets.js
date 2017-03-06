@@ -31,7 +31,6 @@ export default function(options = {}) {
 
         if(!isEx) return content
 
-        content = content.toString()
         let matches = matchAll(content, /url\((\S+?)\)/gi)
         if(matches instanceof Array) {
             matches.forEach(match => {

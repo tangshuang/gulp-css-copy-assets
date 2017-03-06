@@ -53,7 +53,7 @@ glup.src('src/*.css')
     .pipe(gulp.dest('dist'))
 ```
 
-Then you will find a `.map` file of the image. So you must put copyAssets after sourcemap.write action:
+Then you will find a `.map` file of the image which is not your wanted. So you must put copyAssets after sourcemap.write action:
 
 ```
 glup.src('src/*.css')
@@ -80,13 +80,26 @@ copyAssets({
 
 The file extnames to check. Default is `.css`, but when you minify your css code, you should rewrite this option.
 
-You should know the work principle of pipe stream. If you pass `src/*.css` into gup.src, every src css file will be a chunk in the stream. So the file may be renamed, copied or remove in pipe lines. `options.exts` is to find out the right files (which are the output files), and find out images or other type of files contained in this css files, and rewrite the content in this css files.
+You should know the work principle of pipe stream. If you pass `src/*.css` into gup.src, every src css file will be a chunk in the stream. So the file may be renamed, copied or removed in pipe lines. `options.exts` is to find out the right files (which are in the list of output files), and find out images or other type of files contained in this css files, and rewrite the content in this css files.
+
+```
+gulp.src('**/*.css')
+    .pipe(cssmin())
+    .pipe(rename({
+        suffix: '.min',
+    }))
+    .pipe(copyAssets({
+        exts: ['.min.css'],
+    }))
+    .pipe('dist')
+```
 
 **options.srcdirs**
 
 *Array*
 
-The source style files' directories. `glob` is not supported. However, you can use glob to find out directories, and pass them to options.srcdirs.
+The source style files' directories. `glob` is NOT supported.
+However, you can use glob to find out directories first, and then pass them to options.srcdirs.
 
 Some times, you may have different paths of css files passed into pipe stream. e.g. `gulp.src('style/**/*.scss')`, which mean images' paths are not relative to source file because of `import`.
 

@@ -88,7 +88,6 @@ module.exports =
 
 	        if (!isEx) return content;
 
-	        content = content.toString();
 	        var matches = matchAll(content, /url\((\S+?)\)/gi);
 	        if (matches instanceof Array) {
 	            matches.forEach(function (match) {
