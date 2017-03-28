@@ -55,9 +55,10 @@ module.exports =
 	    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	    return (0, _gulpBufferify2.default)(function (content, file, context) {
-	        var exts = ['.css', options.exts];
+	        var exts = ['.css'];
 	        var isEx = false;
 
+	        if (Array.isArray(options.exts)) exts = exts.concat(options.exts);
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
 	        var _iteratorError = undefined;

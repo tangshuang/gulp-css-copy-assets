@@ -1,0 +1,30 @@
+{
+	"name": "gulp-css-copy-assets",
+	"version": "0.0.1",
+	"type": "npm",
+	"build": [
+		{
+			"from": "src/gulp-css-copy-assets.js",
+			"to": "dist/gulp-css-copy-assets.js",
+			"options": {
+				"minify": false,
+				"sourcemap": false,
+				"vendors": false
+			},
+			"settings": {
+                "output": {
+					"libraryTarget": "commonjs2"
+				},
+				"target": "node",
+				"node": {
+					"global": false,
+					"Buffer": false
+				}
+            }
+		}
+	],
+	"test": {
+		"entry": "test/gulp-css-copy-assets.js",
+		"browsers": "Terminal"
+	}
+}

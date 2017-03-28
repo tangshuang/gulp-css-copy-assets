@@ -19,9 +19,10 @@ function isEndAs(str, endStr) {
 
 export default function(options = {}) {
     return GulpBufferify((content, file, context) => {
-        let exts = ['.css', options.exts]
+        let exts = ['.css']
         let isEx = false
 
+        if(Array.isArray(options.exts)) exts = exts.concat(options.exts)
         for(let ext of exts) {
             if(isEndAs(file.path, ext)) {
                 isEx = true
