@@ -42,6 +42,8 @@ export default function(options = {}) {
 				}
 				// clear ' or  '
 				let fileurl = url.replace('"', '').replace("'", '')
+				if(qry !== -1)
+					fileurl = fileurl.substring(0, qry);
 
 				// if there is no such file, ignore
 				let srcdirs = [path.dirname(file.path)]
