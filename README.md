@@ -71,6 +71,7 @@ copyAssets({
     exts: ['.css', '.min.css'],
     srcdirs: [],
     resolve: '../assets',
+	 theme: 'blue'
 })
 ```
 
@@ -138,6 +139,12 @@ The upper code will help you to find out true images path. The directory in `gul
 *String*
 
 The output directory of assets, relative to dest directory. For example, your dest directory is 'dist', if you pass options.resolve '../assets', output css will be put in 'dist', and output assets will be in 'assets'. 'dist' and 'assets' are the same level in directory tree.
+
+**options.theme**
+
+*String*
+
+A theme directory which should be considered while looking up for assets. I.e. when referencing an image as `url(../img/image.png)` then it will be looked for a subdirectory with a theme-name which probably contains the image. If theme name is `'blue'`, then the image will also be searched in `url(../img/blue/image.png)`.
 
 ## Generator
 
