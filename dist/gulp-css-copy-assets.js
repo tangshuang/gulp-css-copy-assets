@@ -98,10 +98,12 @@ module.exports =
 	                    return;
 	                }
 	                // clear ' or  '
-	                var fileurl = url.replace('"', '').replace("'", '');
-                    var qry = fileurl.indexOf('?');
-                    if(qry !== -1)
+	                var fileurl = url.replace(/\"/g, '').replace(/\'/g, '');
+                    var qry = fileurl.indexOf('?'), qrystring = '';
+                    if(qry !== -1) {
+                       qrystring = fileurl.substring(qry);
                     fileurl = fileurl.substring(0, qry);
+                    }
 
 	                // if there is no such file, ignore
 	                var srcdirs = [_path2.default.dirname(file.path)];
@@ -161,8 +163,7 @@ module.exports =
 
 	                context.push(newfile);
 
-	                var reg = new RegExp(url, 'g');
-	                content = content.replace(reg, (options && options.resolve ? options.resolve + '/' : '') + filename);
+	                content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring);
 	            });
 	            return content;
 	        }

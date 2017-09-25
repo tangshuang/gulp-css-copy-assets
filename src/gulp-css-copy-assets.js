@@ -41,10 +41,12 @@ export default function(options = {}) {
                   return
                 }
                 // clear ' or  '
-                let fileurl = url.replace('"', '').replace("'", '');
-                var qry = fileurl.indexOf('?');
-                if(qry !== -1)
+                var fileurl = url.replace(/\"/g, '').replace(/\'/g, '');
+                var qry = fileurl.indexOf('?'), qrystring = '';
+                if(qry !== -1) {
+                   qrystring = fileurl.substring(qry);
                   fileurl = fileurl.substring(0, qry);
+                }
 
                 // if there is no such file, ignore
                 let srcdirs = [path.dirname(file.path)]
@@ -84,7 +86,7 @@ export default function(options = {}) {
                 context.push(newfile)
 
                 let reg = new RegExp(url, 'g')
-                content = content.replace(reg, (options && options.resolve ? options.resolve + '/' : '') + filename)
+                content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring);
             })
             return content
         }
