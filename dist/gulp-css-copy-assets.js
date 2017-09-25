@@ -98,10 +98,10 @@ module.exports =
 	                    return;
 	                }
 	                // clear ' or  '
-						 var fileurl = url.replace('"', '').replace("'", '');
-						 var qry = fileurl.indexOf('?');
-						 if(qry !== -1)
-						 	fileurl = fileurl.substring(0, qry);
+	                var fileurl = url.replace('"', '').replace("'", '');
+                    var qry = fileurl.indexOf('?');
+                    if(qry !== -1)
+                    fileurl = fileurl.substring(0, qry);
 
 	                // if there is no such file, ignore
 	                var srcdirs = [_path2.default.dirname(file.path)];
@@ -123,15 +123,15 @@ module.exports =
 	                        if (_fs2.default.existsSync(truepath)) {
 	                            filetruepath = truepath;
 	                            break;
-	                        }else if(options.theme) {
-										truepath = truepath.replace(/\\/g, '/').replace(/(.*)\/([^/]+)$/, function(s, m1, m2) {
-											return m1 + '/' + options.theme + '/' + m2;
-										});
-										if (_fs2.default.existsSync(truepath)) {
-											filetruepath = truepath;
-											break;
-										}
-									}
+	                        } else if(options.theme) {
+                                truepath = truepath.replace(/\\/g, '/').replace(/(.*)\/([^/]+)$/, function(s, m1, m2) {
+                                    return m1 + '/' + options.theme + '/' + m2;
+                                });
+                            if (_fs2.default.existsSync(truepath)) {
+                                filetruepath = truepath;
+                                break;
+                            }
+                          }
 	                    }
 	                } catch (err) {
 	                    _didIteratorError2 = true;
