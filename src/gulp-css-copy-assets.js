@@ -85,7 +85,6 @@ export default function(options = {}) {
 
                 context.push(newfile)
 
-                let reg = new RegExp(url, 'g')
                 content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring);
             })
             return content
