@@ -41,7 +41,8 @@ export default function(options = {}) {
                   return
                 }
                 // clear ' or  '
-                let fileurl = url.replace('"', '').replace("'", '')
+                let fileurl = url.replace('"', '').replace("'", '');
+                var qry = fileurl.indexOf('?');
                 if(qry !== -1)
                   fileurl = fileurl.substring(0, qry);
 
