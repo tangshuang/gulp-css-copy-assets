@@ -41,7 +41,12 @@ export default function(options = {}) {
                   return
                 }
                 // clear ' or  '
-                let fileurl = url.replace('"', '').replace("'", '')
+                var fileurl = url.replace(/\"/g, '').replace(/\'/g, '');
+                var qry = fileurl.indexOf('?'), qrystring = '';
+                if(qry !== -1) {
+                   qrystring = fileurl.substring(qry);
+                  fileurl = fileurl.substring(0, qry);
+                }
 
                 // if there is no such file, ignore
                 let srcdirs = [path.dirname(file.path)]
@@ -52,12 +57,20 @@ export default function(options = {}) {
                 let filetruepath
 
                 for(let dir of srcdirs) {
-                    let truepath = path.resolve(dir, fileurl)
+                    let truepath = path.resolve(dir, fileurl);
                     if(fs.existsSync(truepath)) {
                         filetruepath = truepath
                         break
+                    } else if (options.theme) {
+                      truepath = truepath.replace(/\\/g, '/').replace(/(.*)\/([^/]+)$/, function(s, m1, m2) {
+                        return m1 + '/' + options.theme + '/' + m2;
+                      });
+                      if (fs.default.existsSync(truepath)) {
+                        filetruepath = truepath;
+                        break;
+                      }
                     }
-                }
+                  }
 
                 if(!filetruepath) return
 
@@ -72,8 +85,7 @@ export default function(options = {}) {
 
                 context.push(newfile)
 
-                let reg = new RegExp(url, 'g')
-                content = content.replace(reg, (options && options.resolve ? options.resolve + '/' : '') + filename)
+                content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring);
             })
             return content
         }
