@@ -38,14 +38,15 @@ export default function(options = {}) {
                 let url = match[1].toString()
                 // only relative path supported, absolute path will be ignore
                 if(url.substr(0, 1) === '/' || url.indexOf('http') === 0) {
-                  return
+                    return
                 }
                 // clear ' or  '
-                var fileurl = url.replace(/\"/g, '').replace(/\'/g, '');
-                var qry = fileurl.indexOf('?'), qrystring = '';
+                var fileurl = url.replace(/\"/g, '').replace(/\'/g, '')
+                var qry = fileurl.indexOf('?')
+                var qrystring = ''
                 if(qry !== -1) {
-                   qrystring = fileurl.substring(qry);
-                  fileurl = fileurl.substring(0, qry);
+                    qrystring = fileurl.substring(qry)
+                    fileurl = fileurl.substring(0, qry)
                 }
 
                 // if there is no such file, ignore
@@ -57,20 +58,22 @@ export default function(options = {}) {
                 let filetruepath
 
                 for(let dir of srcdirs) {
-                    let truepath = path.resolve(dir, fileurl);
-                    if(fs.existsSync(truepath)) {
+                    let truepath = path.resolve(dir, fileurl)
+                    if (fs.existsSync(truepath)) {
                         filetruepath = truepath
                         break
-                    } else if (options.theme) {
-                      truepath = truepath.replace(/\\/g, '/').replace(/(.*)\/([^/]+)$/, function(s, m1, m2) {
-                        return m1 + '/' + options.theme + '/' + m2;
-                      });
-                      if (fs.default.existsSync(truepath)) {
-                        filetruepath = truepath;
-                        break;
-                      }
+                    } 
+                    else if (options.theme) {
+                        truepath = truepath.replace(/\\/g, '/')
+                            .replace(/(.*)\/([^/]+)$/, (s, m1, m2) => {
+                                return m1 + '/' + options.theme + '/' + m2
+                            })
+                        if (fs.existsSync(truepath)) {
+                            filetruepath = truepath
+                            break
+                        }
                     }
-                  }
+                }
 
                 if(!filetruepath) return
 
@@ -85,7 +88,7 @@ export default function(options = {}) {
 
                 context.push(newfile)
 
-                content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring);
+                content = content.split(url).join((options && options.resolve ? options.resolve + '/' : '') + filename + qrystring)
             })
             return content
         }

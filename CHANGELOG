@@ -1,0 +1,10 @@
+9/26/2017
+
+I do not use componer to support this package, and use babel to transform the code.
+Now we do just need to run `npm run build` to build code after we change the code.
+
+The changes are:
+
+1. merge pull request from @lmeysel, which add a `theme` option.
+2. delete no use files
+3. use babel to transform code

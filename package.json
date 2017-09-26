@@ -1,22 +1,25 @@
 {
-    "name": "gulp-css-copy-assets",
-    "version": "0.0.3",
-    "description": "",
-    "main": "dist/gulp-css-copy-assets.js",
-    "scripts": {},
-    "keywords": [],
-    "author": "componer",
-    "dependencies": {
-        "gulp-bufferify": "^0.0.4",
-        "md5-file": "^3.1.1"
-    },
-    "devDependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/componer/gulp-css-copy-assets.git"
-    },
-    "bugs": {
-        "url": "https://github.com/componer/gulp-css-copy-assets/issues"
-    },
-    "license": "ISC"
+  "name": "gulp-css-copy-assets",
+  "version": "0.0.4",
+  "description": "",
+  "main": "dist/gulp-css-copy-assets.js",
+  "scripts": {
+    "build": "babel src/gulp-css-copy-assets.js -o dist/gulp-css-copy-assets.js"
+  },
+  "keywords": [],
+  "author": "tangshuang",
+  "dependencies": {
+    "gulp-bufferify": "^0.0.4",
+    "md5-file": "^3.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangshuang/gulp-css-copy-assets.git"
+  },
+  "license": "MIT"
 }

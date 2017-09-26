@@ -71,7 +71,7 @@ copyAssets({
     exts: ['.css', '.min.css'],
     srcdirs: [],
     resolve: '../assets',
-	 theme: 'blue'
+	theme: 'blue'
 })
 ```
 
