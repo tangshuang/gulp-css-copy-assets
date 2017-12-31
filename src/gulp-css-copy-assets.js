@@ -42,11 +42,18 @@ export default function(options = {}) {
                 }
                 // clear ' or  '
                 var fileurl = url.replace(/\"/g, '').replace(/\'/g, '')
+                // cut off at ?
                 var qry = fileurl.indexOf('?')
                 var qrystring = ''
                 if(qry !== -1) {
                     qrystring = fileurl.substring(qry)
                     fileurl = fileurl.substring(0, qry)
+                }
+                // cut off at #
+                var qryh = fileurl.indexOf('#')
+                if(qryh !== -1) {
+                    qrystring = fileurl.substring(qryh)
+                    fileurl = fileurl.substring(0, qryh)
                 }
 
                 // if there is no such file, ignore
