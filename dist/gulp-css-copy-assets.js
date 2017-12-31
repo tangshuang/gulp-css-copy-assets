@@ -104,7 +104,10 @@ exports.default = function () {
                     }
                 }
 
-                if (!filetruepath) return;
+                if (!filetruepath) {
+                    console.log(fileurl + ' not found');
+                    return;
+                }
 
                 // process
                 var filehash = _md5File2.default.sync(filetruepath).substr(8, 16);

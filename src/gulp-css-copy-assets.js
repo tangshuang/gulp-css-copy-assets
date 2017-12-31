@@ -75,7 +75,10 @@ export default function(options = {}) {
                     }
                 }
 
-                if(!filetruepath) return
+                if(!filetruepath) {
+                    console.log(fileurl + ' not found')
+                    return
+                }
 
                 // process
                 let filehash = md5file.sync(filetruepath).substr(8, 16)
