@@ -37,7 +37,7 @@ export default function(options = {}) {
             matches.forEach(match => {
                 let url = match[1].toString()
                 // only relative path supported, absolute path will be ignore
-                if(url.substr(0, 1) === '/' || url.indexOf('http') === 0 || url.indexOf('data:') === 1) {
+                if(url.substr(0, 1) === '/' || url.indexOf('http') === 0 || url.indexOf('data:') === 0) {
                     return
                 }
                 // clear ' or  '
