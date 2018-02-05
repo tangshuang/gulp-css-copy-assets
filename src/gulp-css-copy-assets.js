@@ -37,16 +37,23 @@ export default function(options = {}) {
             matches.forEach(match => {
                 let url = match[1].toString()
                 // only relative path supported, absolute path will be ignore
-                if(url.substr(0, 1) === '/' || url.indexOf('http') === 0) {
+                if(url.substr(0, 1) === '/' || url.indexOf('http') === 0 || url.indexOf('data:') === 0) {
                     return
                 }
                 // clear ' or  '
                 var fileurl = url.replace(/\"/g, '').replace(/\'/g, '')
+                // cut off at ?
                 var qry = fileurl.indexOf('?')
                 var qrystring = ''
                 if(qry !== -1) {
                     qrystring = fileurl.substring(qry)
                     fileurl = fileurl.substring(0, qry)
+                }
+                // cut off at #
+                var qryh = fileurl.indexOf('#')
+                if(qryh !== -1) {
+                    qrystring = fileurl.substring(qryh)
+                    fileurl = fileurl.substring(0, qryh)
                 }
 
                 // if there is no such file, ignore
@@ -75,7 +82,10 @@ export default function(options = {}) {
                     }
                 }
 
-                if(!filetruepath) return
+                if(!filetruepath) {
+                    console.log(fileurl + ' not found')
+                    return
+                }
 
                 // process
                 let filehash = md5file.sync(filetruepath).substr(8, 16)
